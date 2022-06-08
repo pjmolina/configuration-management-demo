@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.photon {
+  background-color: #fffff0;
+  font-family: "Zilla Slab", serif;
+  padding: 2rem;
+}
+
+.electron {
+  background-color: #fff0ff;
+  font-family: "Zilla Slab", serif;
+  padding: 3rem;
+}
+
+pre {
+  font-family: "Consolas", monospace;
+}
+
+header.photon {
+  border-bottom: 3px solid #a9a92d;
+}
+
+header.electron {
+  border-bottom: 4px solid #922a50;
+}
+
+footer.photon {
+  border-top: 3px solid #a9a92d;
+}
+footer.electron {
+  border-top: 4px solid #922a50;
+}

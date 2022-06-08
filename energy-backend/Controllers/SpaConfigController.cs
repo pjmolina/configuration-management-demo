@@ -30,12 +30,13 @@ namespace Acme.Energy.Backend.Controllers
                 Environment = _config.GetValue<string>("Env"),
                 Audience = _config.GetValue<string>("Spa:Audience"),
                 ClientId = _config.GetValue<string>("Spa:ClientId"),
+                Brand = _config.GetValue<string>("Spa:Brand"),
 
                 Origin = origin,
                 UserAgent = userAgent,
                 AcceptedLang = acceptedLangs,
                 LangResources = langResources,
-                Ip = ip
+                Ip = ip,
             };
         }
         private static string GetVersion()
@@ -57,6 +58,7 @@ namespace Acme.Energy.Backend.Controllers
         public string Environment { get; set; } = "";
         public string Audience { get; set; } = "";
         public string ClientId { get; set; } = "";
+        public string Brand { get; set; } = "";
         public string? Origin { get; set; }
         public string? UserAgent { get; set; }
         public string? AcceptedLang { get; set; }

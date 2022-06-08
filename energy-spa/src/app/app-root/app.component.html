@@ -1,0 +1,16 @@
+<header class="{{ appConfig?.brand }}">
+  <app-banner [brand]="appConfig?.brand"></app-banner>
+</header>
+<main class="{{ appConfig?.brand }}">
+  Hello. Energy consumer!
+
+  <div *ngIf="appConfig">
+    <h2>Client Configuration</h2>
+    <pre
+      >{{ appConfig | json }}
+    </pre>
+  </div>
+</main>
+<footer class="{{ appConfig?.brand }}">
+  &copy; {{ appConfig?.brand }} 2022.
+</footer>
