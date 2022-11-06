@@ -13,16 +13,15 @@ Angular and dotnet core samples for Configuration Management
 ./build-images.sh*
 ```
 
-
 ## Run
 
 ```sh
 ./run-compose.sh*
 ```
 
-- Backend at: http://localhost:5000/spa-config
-- Frontend at: http://localhost:5050
-
+- Backend at: http://energy-api.localhost:81/version
+- Frontend electron at: http://electron.localhost:81
+- Frontend photon at: http://photon.localhost:81
 
 ## License
 
@@ -30,4 +29,4 @@ Angular and dotnet core samples for Configuration Management
 
 ## Credits
 
-(c) [Pedro J. Molina](http://pjmolina.com)  
+- Author: [Pedro J. Molina](http://pjmolina.com) at [Metadev](https://metadev.pro)

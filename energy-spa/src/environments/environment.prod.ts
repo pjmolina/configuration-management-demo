@@ -8,5 +8,5 @@ export const environment: Configuration = {
   production: true,
   debug: false,
   version,
-  serverUri: 'http://backend.localhost:81', //getCurrentOrigin(),
+  serverUri: 'http://energy-backend.localhost:81', //getCurrentOrigin(),
 };

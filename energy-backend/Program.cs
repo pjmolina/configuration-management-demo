@@ -1,3 +1,5 @@
+using Acme.Energy.Backend;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -40,6 +42,9 @@ if (app.Environment.IsDevelopment())
         configure.DocumentPath = "/openapi/{documentName}/openapi.json";
     });
 }
+
+// Register in Consul (if configured)
+ConsulRegistrator.RegisterInConsul(app.Configuration, app, app.Lifetime);
 
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();

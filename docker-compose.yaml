@@ -3,36 +3,33 @@ networks:
   demo:
 services:
   energy-backend:
+    deploy:
+      replicas: 2
     build: ./energy-backend
-    # ports:
-    #   - "5000:80"
     environment:
       - ASPNETCORE_URLS=http://+:80
-      - Spa__Brand=electron
+      - ENV=lab
+      - CONSUL__HOST=consul
+      - CONSUL__PORT=8500
+      - PORT=80
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
-      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.routers.energy-backend.rule=Host(`energy-backend.localhost`)"
+      - "traefik.http.routers.energy-backend.entrypoints=web"
     networks:
       - demo
-  energy-spa-electron:
+  spa-electron:
     build: ./energy-spa
-    # ports:
-    #   - "5050:80"
     links:
       - energy-backend
-    deploy:
-      replicas: 1
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.electron.rule=Host(`electron.localhost`)"
       - "traefik.http.routers.electron.entrypoints=web"
     networks:
       - demo
-  energy-spa-photon:
+  spa-photon:
     build: ./energy-spa
-    # ports:
-    #   - "5051:80"
     links:
       - energy-backend
     labels:
