@@ -66,5 +66,6 @@ services:
       - "8600:8600"
     environment:
       - CONSUL_BIND_INTERFACE=eth0
+      - DOCKER_HOST=1
     networks:
       - demo

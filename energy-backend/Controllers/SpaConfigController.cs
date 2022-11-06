@@ -13,6 +13,7 @@ namespace Acme.Energy.Backend.Controllers
             _config = config;
         }
 
+        [HttpGet]
         public ActionResult<SpaConfigResponse> SpaConfiguration()
         {
             var host = Request.Host.ToString();

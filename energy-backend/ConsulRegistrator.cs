@@ -61,7 +61,7 @@ namespace Acme.Energy.Backend
         }
         private static string SafeForDns(string value) 
         {
-            return value ?? "".Replace(".", "-").Replace(".", "-");
+            return (value ?? "").Replace(".", "-").Replace(".", "-");
         }
     }
     /// <summary>
