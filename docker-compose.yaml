@@ -1,15 +1,73 @@
 version: "3.9"
+networks:
+  demo:
 services:
   energy-backend:
     build: ./energy-backend
-    ports:
-      - "5000:80"
+    # ports:
+    #   - "5000:80"
     environment:
+      - ASPNETCORE_URLS=http://+:80
       - Spa__Brand=electron
-  energy-spa:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+    networks:
+      - demo
+  energy-spa-electron:
     build: ./energy-spa
-    ports:
-      - "5050:80"
+    # ports:
+    #   - "5050:80"
     links:
       - energy-backend
-      
+    deploy:
+      replicas: 1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.electron.rule=Host(`electron.localhost`)"
+      - "traefik.http.routers.electron.entrypoints=web"
+    networks:
+      - demo
+  energy-spa-photon:
+    build: ./energy-spa
+    # ports:
+    #   - "5051:80"
+    links:
+      - energy-backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.photon.rule=Host(`photon.localhost`)"
+      - "traefik.http.routers.photon.entrypoints=web"
+    networks:
+      - demo
+
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "81:80"
+      - "8081:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    depends_on:
+      - consul
+    networks:
+      - demo
+  consul:
+    image: consul:1.11.4
+    hostname: consul
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+    networks:
+      - demo

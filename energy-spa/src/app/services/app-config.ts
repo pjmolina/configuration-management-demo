@@ -7,6 +7,7 @@ export interface AppConfig {
   userAgent?: string;
   acceptedLang?: string;
   langResources?: string;
+  lang?: string;
   ip?: string;
   brand: string;
 }

@@ -2,7 +2,9 @@
   <app-banner [brand]="appConfig?.brand"></app-banner>
 </header>
 <main class="{{ appConfig?.brand }}">
-  Hello. Energy consumer!
+  <span *ngIf="appConfig?.lang?.startWith('es'); else langEn">
+    ¡Hola, consumidor de energia!
+  </span>
 
   <div *ngIf="appConfig">
     <h2>Client Configuration</h2>
@@ -12,5 +14,10 @@
   </div>
 </main>
 <footer class="{{ appConfig?.brand }}">
-  &copy; {{ appConfig?.brand }} 2022.
+  &copy; {{ appConfig?.brand }} 2022. Powered by
+  <a href="https://metadev.pro">
+    <img src="https://metadev.pro/img/metadev.svg" class="metadev-logo" />
+  </a>
 </footer>
+
+<ng-template #langEn> Hello. Energy consumer! </ng-template>
