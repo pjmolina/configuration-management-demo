@@ -2,7 +2,7 @@
   <app-banner [brand]="appConfig?.brand"></app-banner>
 </header>
 <main class="{{ appConfig?.brand }}">
-  <span *ngIf="appConfig?.lang?.startWith('es'); else langEn">
+  <span *ngIf="appConfig?.lang?.startsWith('es'); else langEn">
     ¡Hola, consumidor de energia!
   </span>
 
