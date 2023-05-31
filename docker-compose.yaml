@@ -16,6 +16,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.energy-backend.rule=Host(`energy-backend.localhost`)"
       - "traefik.http.routers.energy-backend.entrypoints=web"
+      - "traefik.http.routers.energy-backend2.rule=(Host(`electron.localhost`) && PathPrefix(`/api`))"
+      - "traefik.http.routers.energy-backend2.entrypoints=web"
     networks:
       - demo
   spa-electron:
